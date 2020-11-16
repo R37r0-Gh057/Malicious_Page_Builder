@@ -14,5 +14,39 @@ Now before you start doing anything, read this document to the end.
   Modules are just HTML files which are written in a way so that they can be merged with other HTML files easily.
 * Instructions for writing
   There are few things you must do while writing a module:
-    * You need specify the name and description of your module inside the your module:
-      test
+    * Specify the name and description of your module
+    * Mark the beginning and the end of your main code
+    * Mark the `src` that need to be included
+    * If the <body> is necessary, you need to Mark it as well.
+    * Mark all the function names
+#### 1. Specifying Name and Description
+  Write these inside a HTML comment: `<!--
+MLBname=your_module_name_using_underscore_instead_of_space
+MLBdesc=your module description
+-->`
+#### 2. Marking START and END
+  Suppose your code looks like this:
+  ```
+  function function() {
+        console.log('1st');
+			}
+  function anotherfunction() {
+        console.log('2nd');
+      }
+  function();
+  ```
+  You have to mark it like this:
+  ```
+  //MLB-START
+  function function() {
+        console.log('1st');
+			}
+  function anotherfunction() {
+        console.log('2nd');
+      }
+  //MLB-END
+  function();
+  ```
+  Everything between `//MLB-START` and `MLB-END` will get collected by the main script.
+#### 3. Marking which `src` to include
+  

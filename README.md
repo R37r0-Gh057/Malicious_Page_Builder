@@ -85,3 +85,5 @@ function function() {
 }
 ```
 And lastly, make sure new modules don't contain functions/module names same as the old ones. To check if your new module is clean, run the `module_checker.py <path_to_your_module.html>`.
+
+**Make sure to check out the `demo_template` inside `templates/`**

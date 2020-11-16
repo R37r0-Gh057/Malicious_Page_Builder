@@ -19,10 +19,13 @@ Now before you start doing anything, read this document to the end.
     * If the `<body>` is necessary, you need to Mark it as well.
     * Mark all the function names
 #### 1. Specifying Name and Description
-  Write these inside a HTML comment: `<!--
+  Write these inside a HTML comment:
+  ```
+<!--
 MLBname=your_module_name_using_underscore_instead_of_space
 MLBdesc=your module description
--->`
+-->
+```
 #### 2. Marking START and END
   Suppose your code looks like this:
   ```

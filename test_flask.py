@@ -1,3 +1,6 @@
+# This script is just for debugging process
+# You can use this script to test a module
+
 from flask import Flask, render_template, request, Response
 from base64 import b64decode
 import json, pyaudio

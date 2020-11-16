@@ -84,12 +84,11 @@ class Page_Builder:
 							self.funcs.append(i.strip('{'))
 
 	def build_page(self): # Calling all the above functions and bulding the base HTML file.
-
-	'''
-	Checking the number of selected modules is more than 1 or not,
-	if it's more than 1 then the merging process will begin,
-	if it;s not more than 1 then we simply run flask wtih the selected module as the base template.
-	'''
+		'''
+		Checking the number of selected modules is more than 1 or not,
+		if it's more than 1 then the merging process will begin,
+		if it;s not more than 1 then we simply run flask wtih the selected module as the base template.
+		'''
 		if len(self.selected_modules) != 1:
 			for i in self.selected_modules:
 				print_status('Extracting Code.'+YELLOW+f'[{i}]'+WHITE)

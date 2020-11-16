@@ -1,4 +1,4 @@
-# This script is just for debugging process
+# This script is just for debugging purposes
 # You can use this script to test a module
 
 from flask import Flask, render_template, request, Response

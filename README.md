@@ -16,7 +16,7 @@ Now before you start doing anything, read this document to the end.
     * Specify the name and description of your module
     * Mark the beginning and the end of your main code
     * Mark the `src` that need to be included
-    * If the <body> is necessary, you need to Mark it as well.
+    * If the `<body>` is necessary, you need to Mark it as well.
     * Mark all the function names
 #### 1. Specifying Name and Description
   Write these inside a HTML comment: `<!--

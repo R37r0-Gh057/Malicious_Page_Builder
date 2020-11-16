@@ -49,14 +49,15 @@ class Page_Builder:
 							break
 					break
 
-	def extract_src(self,name): # Extracting <src> tags from a module
+	def extract_src(self,name): # Extracting src from a module
 		with open('templates/'+name,'r') as f:
 			p = iter(f.read().split('\n'))
 			for i in p:
 				if i == '<!-- MLB_SRC -->':
 					b = next(p,None)
-					if not b in self.src:
-						self.src.append(b)
+					for e in b.split(' '):
+						if 'src="' in e and not e in self.src:
+							self.src.append(b)
 
 	def extract_body(self,name): # Extracting required elements of the <body> tag from a module
 		with open('templates/'+name,'r') as f:

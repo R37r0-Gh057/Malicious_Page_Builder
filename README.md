@@ -49,4 +49,39 @@ MLBdesc=your module description
   ```
   Everything between `//MLB-START` and `MLB-END` will get collected by the main script.
 #### 3. Marking which `src` to include
-  
+  Write `<!--MLB_SRC-->` just above the line:
+```
+<html>
+<head>
+<title>test</title>
+</head>
+<!--MLB_SRC-->
+<script type="text/javascript" src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+
+<script language="javascript">
+	'use strict';
+	const fs = require('fs');
+	......
+```
+#### 4. Marking the `<body>`
+Write `<!--MLB-BODY-->` just above `<body>`:
+```
+<html>
+<head>
+<title>test</title>
+</head>
+<!--MLB-BODY-->
+<body>
+<h1>test</h1>
+</body>
+</html>
+```
+#### 5. Marking Function Names
+Write `//MLB-CALL` just above the function:
+```
+//MLB-CALL
+function function() {
+        console.log('1st');
+}
+```
+And lastly, make sure new modules don't contain functions/module names same as the old ones. To check if your new module is clean, run the `module_checker.py <path_to_your_module.html>`.

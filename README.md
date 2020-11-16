@@ -13,8 +13,6 @@ Now before you start doing anything, read this document to the end.
 * About
     * Modules are just HTML files which are written in a way so that they can be merged with other HTML files easily.
 * Instructions for writing
-  
-There are few things you must do while writing a module:
     * Specify the name and description of your module
     * Mark the beginning and the end of your main code
     * Mark the `src` that need to be included

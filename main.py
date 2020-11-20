@@ -289,8 +289,6 @@ def menu():
 				Page_Builder(selected_modules).build_page()
 			else:
 				print_err('No module selected for building.')
-		elif x == 'fuck':
-			print(selected_modules)
 		else:
 			print_err('Invalid command. Type "help" for a list of commands.')
 

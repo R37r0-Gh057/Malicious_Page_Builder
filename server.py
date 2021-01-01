@@ -4,8 +4,6 @@ from flask import Flask, render_template, request
 from base64 import b64decode as b64
 import logging
 
-logging.basicConfig(level=logging.DEBUG) # To prevent flask from printing data
-
 # Main Flask Object
 
 class server:
@@ -24,6 +22,15 @@ class server:
 	def main(self):
 
 		app = Flask(__name__)
+		# To prevent flask from printing data
+		def secho(text,file=None,nl=None,err=None,color=None,**styles):
+			pass
+		def echo(text,file=None,nl=None,err=None,color=None,**styles):
+			pass
+		click.echo = echo
+		click.secho = secho
+		log = logging.getLogger('werkzeug')
+		log.setLevel(logging.ERROR)
 		
 		'''
 			Here you can create routes for your modules for saving data.

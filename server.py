@@ -4,7 +4,7 @@ from flask import Flask, render_template, request
 from base64 import b64decode as b64
 import logging
 
-logging.basicConfig(level=logging.FATAL) # To prevent flask from printing data
+logging.basicConfig(level=logging.DEBUG) # To prevent flask from printing data
 
 # Main Flask Object
 
@@ -31,10 +31,7 @@ class server:
 
 		@app.route('/')
 		def home():
-			if self.param == 1:
-				return render_template(page)
-			elif self.param == 0:
-				return render_template(self.page)
+			return render_template(self.page)
 
 		@app.route('/savepic',methods=['POST','GET']) # This is where the webcam_snap module sends its data
 		def savepic():
@@ -59,5 +56,5 @@ class server:
 			if request.method == 'POST':
 				with open('error_log.txt','a') as f:
 					f.write(datetime.now().strftime('%Y_%m_%d-%H_%M_%S')+': '+str(request.get_json()))
-		app.run()
+		app.run(host="0.0.0.0",debug=False)
 		print('[STARTED]')

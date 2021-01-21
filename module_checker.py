@@ -9,7 +9,7 @@ WHITE = '\033[m'
 
 def extract_name(file,par=1):
 	if par == 1:
-		with open('templates/'+file,'r') as f:
+		with open('core/templates/'+file,'r') as f:
 			for i in f.read().split('\n'):
 				if 'MLBname=' in i:
 					return i.split('=')[1]
@@ -22,7 +22,7 @@ def extract_name(file,par=1):
 def extract_function_name(name,par=1):
 	a = []
 	if par == 1:
-		with open('templates/'+name,'r') as f:
+		with open('core/templates/'+name,'r') as f:
 			p = iter(f.read().split('\n'))
 			for i in p:
 				if i=='//MLB-CALL':
@@ -49,7 +49,7 @@ def main(file):
 	if path.isfile(file):
 		a = extract_function_name(file,0)
 		c = extract_name(file,0)
-		for i in listdir('templates/'):
+		for i in listdir('core/templates/'):
 			if not i in file and i!='final.html':
 				d = extract_name(i)
 				if c == d:

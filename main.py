@@ -12,7 +12,7 @@ def menu():
 	selected_modules = []
 	selected_modules_names = []
 	while True:
-		x = input(config.WHITE+'{'+config.RED+'M.L.B '+config.WHITE+'}: ')
+		x = input(config.WHITE+'{'+config.RED+'M.P.B '+config.WHITE+'}: ')
 		if x.lower() == 'list':
 			print(config.CYAN+'\n\t--AVAILABLE MODULES--\t\n'+config.WHITE)
 			c = 1

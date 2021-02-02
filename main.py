@@ -1,5 +1,4 @@
 import os
-import ctypes
 import subprocess
 import requests
 from datetime import datetime

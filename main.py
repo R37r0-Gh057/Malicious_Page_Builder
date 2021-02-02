@@ -1,9 +1,13 @@
-import os, ctypes, subprocess
+import os
+import ctypes
+import subprocess
+import requests
 from datetime import datetime
 from time import sleep
 from core import config
 from core import basic
 from core import page_builder
+from core import cloner
 
 config.init()
 
@@ -77,6 +81,30 @@ def menu():
 					basic.print_err('Specified module is not in the list.')
 			else:
 				basic.print_err('Invalid syntax. Type "help".')
+		elif 'clone' in x.lower():
+			if ' ' in x and len(x.split()) == 2:
+				basic.print_status(f'checking site {x.split()[1]}...')
+				if basic.is_connected():
+					if 'https://' in x.split()[1] or 'http://' in x.split()[1]:
+						try:
+							if requests.get(x.split()[1]).status_code == 200:
+								basic.print_status('SITE IS OK.')
+								basic.print_status('Beginning cloning process.')
+								cloner.Clone(x.split()[1])
+								page_builder.Page_Builder(selected_modules).inject_in_cloned_page()
+							else:
+								print(1)
+								basic.print_err('THIS WEBSITE CANNOT BE CLONED.')
+						except Exception as e:
+							print(2)
+							print(e,e.args)
+							basic.print_err('THIS WEBSITE CANNOT BE CLONED.')
+					else:
+						basic.print_err('NO SCHEMA SPECIFIED IN URL')
+				else:
+					basic.print_err('NO INTERNET CONNECTION DETECTED')
+			else:
+				basic.print_err('Invalid Syntax')
 		elif x.lower() == 'build':
 			if len(selected_modules) != 0:
 				page_builder.Page_Builder(selected_modules).build_page()

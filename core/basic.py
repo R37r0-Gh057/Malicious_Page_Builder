@@ -1,7 +1,12 @@
-import os, subprocess
+import os, subprocess, socket
 from . import config
 
-
+def is_connected():
+	try:
+		socket.create_connection(('1.1.1.1',53))
+		return True
+	except:
+		return False
 '''
 On windows, the above defined color codes don't get displayed in the console by default,
 so we have to modify some values in the Registry.
@@ -36,6 +41,8 @@ def clear():
 Loading modules by searching for 'MLBname' and 'MLBdesc' in every html file present in the 'templates/' directory
 '''
 def load_modules():
+	if os.path.isfile('core/templates/final.html'):
+		os.remove('core/templates/final.html')
 	for i in os.listdir('core/templates/'):
 		if '.html' in i:
 			with open('core/templates/'+i,'r') as f:

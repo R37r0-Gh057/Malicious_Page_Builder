@@ -1,4 +1,4 @@
-import os, subprocess, socket
+import os, subprocess, socket, ctypes
 from . import config
 
 def is_connected():

@@ -1,0 +1,15 @@
+<html>
+<!--
+MLBname=speech
+MLBdesc=text to speak
+-->
+<script>
+//MLB-START
+//MLB-CALL
+	function speech() {
+		var msg = new SpeechSynthesisUtterance('Hello World');
+		window.speechSynthesis.speak(msg);
+	}
+//MLB-END
+</script>
+</html>

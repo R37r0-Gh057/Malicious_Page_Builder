@@ -1,4 +1,4 @@
-import os, subprocess, socket, ctypes
+import os, subprocess, socket
 from . import config
 
 def is_connected():
@@ -79,7 +79,8 @@ def usage():
 	print(f'{config.RED}exclude\t{config.GREEN}exclude a module from build list\n')
 	print(f'{config.RED}list\t{config.GREEN}list available modules.\n')
 	print(f'{config.RED}list_selected\t{config.GREEN}list selected modules.\n')
-	print(f'{config.RED}build\t{config.GREEN}build link with the selected modules.\n')
+	print(f'{config.RED}build\t{config.GREEN}build page with the selected modules.\n')
+	print(f'{config.RED}clone\t{config.GREEN}clone a webpage and inject selected modules into it.\n')
 	print(f'{config.RED}help\t{config.GREEN}show this help message.\n')
 	print(f'{config.RED}clear\t{config.GREEN}clear the screen.\n')
 	print(f'{config.RED}exit\t{config.GREEN}does what it says.\n')

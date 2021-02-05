@@ -1,8 +1,6 @@
 # Malicious Page Builder
 ## About
-Malicious Page Builder is a framework built for making advance phishing pages.
-It has a variety of modules which you can find useful for generating a good phishing page.
-You can also make your own module easily and load it inside the framework.
+Malicious Page Builder is a tool which can generate a basic phishing page by using custom web templates that uses (HTML5 Web APIs)[https://developer.mozilla.org/en-US/docs/Web/API].
 
 ## Contributing Instructions
 

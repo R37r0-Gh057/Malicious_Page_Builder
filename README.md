@@ -4,5 +4,16 @@ Malicious Page Builder is a tool which can generate a basic phishing page by usi
 
 ## Installation & Run
 
-`pip install -r requirements.txt`
+`python3 -m pip install -r requirements.txt`
+
 `python3 main.py`
+
+![](start.jpg)
+
+type `help` to get a list of commands and their description.
+
+![](help.jpg)
+
+## Contributing
+
+see CONTRIBUTERS.MD file

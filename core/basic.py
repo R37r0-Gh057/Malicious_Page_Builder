@@ -12,7 +12,7 @@ def set_cmd(option, value):
 	elif option.lower() == 'subdomain':
 		config.subdomain = value
 		print_status(f'{option} ==> {value}')
-	elif x.lower() == 'use_ngrok':
+	elif option.lower() == 'use_ngrok':
 		if value.lower() == 'true' or value.lower() == 'false':
 			config.use_ngrok = eval(value.capitalize())
 		else:

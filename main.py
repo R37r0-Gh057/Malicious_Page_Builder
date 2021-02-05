@@ -95,6 +95,9 @@ def menu():
 								basic.print_status('SITE IS OK.')
 								basic.print_status('Beginning cloning process.')
 								cloner.Clone(x.split()[1])
+								if config.use_ngrok:
+									config.ngrok_url = ngrok.connect(config.port,subdomain=config.subdomain).public_url
+									is_ngrok = True
 								page_builder.Page_Builder(selected_modules).inject_in_cloned_page()
 							else:
 								print(1)
@@ -102,7 +105,7 @@ def menu():
 						except Exception as e:
 							print(2)
 							print(e,e.args)
-							basic.print_err('THIS WEBSITE CANNOT BE CLONED.')
+							basic.print_err('SOME ERROR OCCURED.')
 					else:
 						basic.print_err('NO PROTOCOL SPECIFIED IN URL')
 				else:

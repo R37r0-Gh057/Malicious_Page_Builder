@@ -16,4 +16,4 @@ type `help` to get a list of commands and their description.
 
 ## Contributing
 
-see CONTRIBUTERS.MD file
+[go here for contributing instructions](https://github.com/R37r0-Gh057/Malicious_Page_Builder/blob/main/CONTRIBUTING.MD)

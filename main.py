@@ -119,6 +119,9 @@ def menu():
 				basic.print_err('No module selected for building.')
 		elif 'set' in x.lower() and len(x.split()) == 3:
 			basic.set_cmd(x.split()[1], x.split()[2])
+		elif x.lower() == 'options':
+			print(f'\n{config.CYAN}--OPTION--\t--VALUE--{config.WHITE}\n')
+			print(f'{config.YELLOW}use_ngrok\t{config.GREEN}{config.use_ngrok}{config.WHITE}\n{config.YELLOW}port\t\t{config.WHITE}{config.GREEN}{config.port}\n{config.WHITE}{config.YELLOW}subdomain\t{config.WHITE}{config.GREEN}{config.subdomain}\n{config.WHITE}')
 		else:
 			basic.print_err('Invalid command. Type "help" for a list of commands.')
 

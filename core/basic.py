@@ -1,6 +1,26 @@
 import os, subprocess, socket
 from . import config
 
+def set_cmd(option, value):
+	available_options = ['port','subdomain', 'use_ngrok']
+	if option.lower() == 'port':
+		if value.isdigit():
+			config.port = int(value)
+			print_status(f'{option} ==> {value}')
+		else:
+			print_err('ENTER A VALID PORT')
+	elif option.lower() == 'subdomain':
+		config.subdomain = value
+		print_status(f'{option} ==> {value}')
+	elif x.lower() == 'use_ngrok':
+		if value.lower() == 'true' or value.lower() == 'false':
+			config.use_ngrok = eval(value.capitalize())
+		else:
+			print_err('INVALID VALUE.')
+		print_status(f'{option} ==> {value}')
+	else:
+		print_err('INVALID OPTION SELECTED')
+
 def is_connected():
 	try:
 		socket.create_connection(('1.1.1.1',53))

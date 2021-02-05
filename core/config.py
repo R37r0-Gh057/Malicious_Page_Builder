@@ -1,5 +1,5 @@
 def init():
-	global YELLOW, WHITE, CYAN, RED, GREEN, BLUE, banner, module_desc_list, module_list, module_filename_list
+	global YELLOW, WHITE, CYAN, RED, GREEN, BLUE, banner, module_desc_list, module_list, module_filename_list, ngrok_url, use_ngrok, port, subdomain
 
 	YELLOW = '\033[33m'
 	BLUE = '\033[34m'
@@ -11,6 +11,10 @@ def init():
 	module_list = [] #for storing list of available modules
 	module_filename_list = [] #for storing filenames of available modules
 	module_desc_list = [] #for storing description of available modules
+	ngrok_url = '' #for storing ngrok url
+	use_ngrok = False # ngrok boolean
+	port = 5000
+	subdomain = None
 
 
 	banner = f'''

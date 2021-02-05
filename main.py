@@ -1,7 +1,9 @@
 import os
+import ctypes
 import subprocess
 import requests
 from datetime import datetime
+from pyngrok import ngrok
 from time import sleep
 from core import config
 from core import basic
@@ -12,9 +14,12 @@ config.init()
 
 # User Interface
 def menu():
+	is_ngrok = False
 	selected_modules = []
 	selected_modules_names = []
 	while True:
+		if is_ngrok:
+			ngrok.disconnect(config.ngrok_url)
 		x = input(config.WHITE+'{'+config.RED+'M.P.B '+config.WHITE+'}: ')
 		if x.lower() == 'list':
 			print(config.CYAN+'\n\t--AVAILABLE MODULES--\t\n'+config.WHITE)
@@ -99,16 +104,21 @@ def menu():
 							print(e,e.args)
 							basic.print_err('THIS WEBSITE CANNOT BE CLONED.')
 					else:
-						basic.print_err('NO SCHEMA SPECIFIED IN URL')
+						basic.print_err('NO PROTOCOL SPECIFIED IN URL')
 				else:
 					basic.print_err('NO INTERNET CONNECTION DETECTED')
 			else:
 				basic.print_err('Invalid Syntax')
 		elif x.lower() == 'build':
 			if len(selected_modules) != 0:
+				if config.use_ngrok:
+					config.ngrok_url = ngrok.connect(config.port,subdomain=config.subdomain).public_url
+					is_ngrok = True
 				page_builder.Page_Builder(selected_modules).build_page()
 			else:
 				basic.print_err('No module selected for building.')
+		elif 'set' in x.lower() and len(x.split()) == 3:
+			basic.set_cmd(x.split()[1], x.split()[2])
 		else:
 			basic.print_err('Invalid command. Type "help" for a list of commands.')
 

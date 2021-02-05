@@ -8,11 +8,11 @@ Malicious Page Builder is a tool which can generate a basic phishing page by usi
 
 `python3 main.py`
 
-![](start.jpg)
+![](.imgs/start.jpg)
 
 type `help` to get a list of commands and their description.
 
-![](help.jpg)
+![](.imgs/help.jpg)
 
 ## Contributing
 

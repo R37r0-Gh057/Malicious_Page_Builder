@@ -83,4 +83,4 @@ class server:
 			if request.method == 'POST':
 				with open('error_log.txt','a') as f:
 					f.write(datetime.now().strftime('%Y_%m_%d-%H_%M_%S')+': '+str(request.get_json()))
-		app.run(host="0.0.0.0",debug=False)
+		app.run(host="0.0.0.0",port=config.port,debug=False)

@@ -14,6 +14,8 @@ type `help` to get a list of commands and their description.
 
 ![](.imgs/help.jpg)
 
+[Video Tutorial](https://youtu.be/ZVE5CWNEv7A)
+
 ## Contributing
 
 [go here for contributing instructions](https://github.com/R37r0-Gh057/Malicious_Page_Builder/blob/main/CONTRIBUTING.MD)

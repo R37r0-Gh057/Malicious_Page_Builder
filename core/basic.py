@@ -1,4 +1,5 @@
-import os, subprocess, socket
+import os, subprocess, socket, ctypes
+from time import sleep
 from . import config
 
 def set_cmd(option, value):
